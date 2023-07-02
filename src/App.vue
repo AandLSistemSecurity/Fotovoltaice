@@ -4,7 +4,11 @@
       <div class="top-scroller">
         <div class="top-scroll-bar" :style="`width: ${scrolled}%`"></div>
       </div>
-      <svg-icon class="menu-icon" :iconPath="Icons.menuIcon" @click="drawerVisible = !drawerVisible"/>
+      <svg-icon
+        class="menu-icon"
+        :iconPath="Icons.menuIcon"
+        @click="drawerVisible = !drawerVisible"
+      />
       <img class="logo mobile-logo" src="./assets/img/logo.svg" alt="" />
       <ul class="desktop-nav">
         <li><a href="#acasa">Acasa</a></li>
@@ -21,7 +25,16 @@
       <SistemView />
       <ContactView />
     </main>
-    <footer></footer>
+    <!-- <footer>
+      <div class="attribution-container">
+        Imagini furnizate de
+       <a :href="attributions[0].authorLink">{{ attributions[0].author }}</a> |
+       <a :href="attributions[1].authorLink">{{ attributions[1].author }}</a> |
+       <a :href="attributions[2].authorLink">{{ attributions[2].author }}</a> si
+       <a :href="attributions[3].authorLink">{{ attributions[3].author }}</a>
+        de pe <a href="https://unsplash.com/">Unsplash</a>
+      </div>
+    </footer> -->
     <Sidebar v-model:visible="drawerVisible">
       <h2>Meniu</h2>
       <ul class="mobile-nav">
@@ -39,13 +52,14 @@
 import { ref } from "vue";
 import HomeViewVue from "./views/HomeView.vue";
 import Sidebar from "primevue/sidebar";
-import SvgIcon from "./components/SvgIcon.vue"
+import SvgIcon from "./components/SvgIcon.vue";
 import Icons from "./assets/modules/Icons.js";
+import attributions from "./assets/modules/attributions.js";
 import OffersView from "./views/OffersView.vue";
 import SistemView from "./views/SistemView.vue";
 import AboutView from "./views/AboutView.vue";
 import ContactView from "./views/ContactView.vue";
-import ScrollTop from 'primevue/scrolltop';
+import ScrollTop from "primevue/scrolltop";
 
 const scrolled = ref(0);
 let drawerVisible = ref(false);
@@ -91,7 +105,7 @@ header {
   display: none;
 }
 
-.menu-icon{
+.menu-icon {
   display: none;
 }
 
@@ -133,10 +147,10 @@ main {
 }
 
 @media screen and (max-width: 1024px) {
-  .desktop-nav{
+  .desktop-nav {
     display: none;
   }
-  .mobile-nav{
+  .mobile-nav {
     display: flex;
     flex-flow: column;
     margin: 0;
@@ -144,7 +158,7 @@ main {
     list-style-type: none;
     align-items: center;
     gap: 1rem;
-    a{
+    a {
       text-decoration: none;
       color: var(--light);
       font-size: 1.3rem;
@@ -163,14 +177,36 @@ main {
     left: 1rem;
   }
 
-  .p-sidebar{
+  .p-sidebar {
     background: var(--main) !important;
-    h2{
+    h2 {
       color: var(--light) !important;
       text-align: center;
       border-bottom: 1px solid var(--light);
       padding-bottom: 0.5rem;
     }
+  }
+}
+
+footer {
+  width: 100%;
+  height: 40px;
+  background: var(--main);
+  display: flex;
+  align-items: center;
+}
+
+
+.attribution-container {
+  width: fit-content;
+  margin: auto;
+  font-size: 0.8rem;
+  display: flex;
+  gap: 0.3rem;
+  color: var(--light);
+  a{
+    text-decoration: none;
+    color: var(--success);
   }
 }
 </style>
